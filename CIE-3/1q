@@ -1,0 +1,35 @@
+class Node:
+    def __init__(self, data=None):
+        self.data = data
+        self.next = None
+
+class DoublyLinkedlist:
+    def __init__(self):
+        self.next = None
+        self.prev = None
+
+    def insertion(self, data):
+        new_node = Node(data)
+        if self.prev is None:
+            self.next = self.prev = new_node
+        else:
+            self.prev.next = new_node
+            self.prev = new_node
+
+    def deletion(self):
+        if self.next is None:
+            return None
+        removed_data = self.next.data
+        self.next = self.next.next
+        if self.next is None:
+            self.prev = None
+        return removed_data
+
+dll = DoublyLinkedlist()
+dll.insertion(10)
+dll.insertion(20)
+dll.insertion(30)
+
+print("Delete:", dll.deletion())
+
+dll.deletion()
